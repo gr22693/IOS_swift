@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		CC03C3E7207DDD8D00A08D3B /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC03C3E6207DDD8D00A08D3B /* String+Extension.swift */; };
+		CC4B9B9C208B4E22003B434F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC4B9B9B208B4E22003B434F /* Assets.xcassets */; };
 		CCF2AC162063DEFE00C8790C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF2AC152063DEFE00C8790C /* AppDelegate.swift */; };
 		CCF2AC182063DEFE00C8790C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF2AC172063DEFE00C8790C /* LoginViewController.swift */; };
 		CCF2AC1B2063DEFE00C8790C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCF2AC192063DEFE00C8790C /* Main.storyboard */; };
 		CCF2AC1E2063DEFE00C8790C /* ShoppingCart.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CCF2AC1C2063DEFE00C8790C /* ShoppingCart.xcdatamodeld */; };
-		CCF2AC202063DEFE00C8790C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCF2AC1F2063DEFE00C8790C /* Assets.xcassets */; };
 		CCF2AC232063DEFE00C8790C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCF2AC212063DEFE00C8790C /* LaunchScreen.storyboard */; };
 		CCF2AC3120664C8800C8790C /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF2AC3020664C8800C8790C /* RegistrationViewController.swift */; };
 		CCF2FCCC2067B7C7006DAEEE /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF2FCCB2067B7C7006DAEEE /* HomeScreenViewController.swift */; };
@@ -20,12 +20,12 @@
 
 /* Begin PBXFileReference section */
 		CC03C3E6207DDD8D00A08D3B /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		CC4B9B9B208B4E22003B434F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CCF2AC122063DEFE00C8790C /* ShoppingCart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoppingCart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCF2AC152063DEFE00C8790C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CCF2AC172063DEFE00C8790C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CCF2AC1A2063DEFE00C8790C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CCF2AC1D2063DEFE00C8790C /* ShoppingCart.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ShoppingCart.xcdatamodel; sourceTree = "<group>"; };
-		CCF2AC1F2063DEFE00C8790C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CCF2AC222063DEFE00C8790C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CCF2AC242063DEFE00C8790C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCF2AC3020664C8800C8790C /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
@@ -76,7 +76,7 @@
 				CCF2FCCB2067B7C7006DAEEE /* HomeScreenViewController.swift */,
 				CCF2AC3020664C8800C8790C /* RegistrationViewController.swift */,
 				CCF2AC192063DEFE00C8790C /* Main.storyboard */,
-				CCF2AC1F2063DEFE00C8790C /* Assets.xcassets */,
+				CC4B9B9B208B4E22003B434F /* Assets.xcassets */,
 				CCF2AC212063DEFE00C8790C /* LaunchScreen.storyboard */,
 				CCF2AC242063DEFE00C8790C /* Info.plist */,
 				CCF2AC1C2063DEFE00C8790C /* ShoppingCart.xcdatamodeld */,
@@ -144,7 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCF2AC232063DEFE00C8790C /* LaunchScreen.storyboard in Resources */,
-				CCF2AC202063DEFE00C8790C /* Assets.xcassets in Resources */,
+				CC4B9B9C208B4E22003B434F /* Assets.xcassets in Resources */,
 				CCF2AC1B2063DEFE00C8790C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

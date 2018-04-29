@@ -10,28 +10,60 @@ import UIKit
 import CoreData
 
 class LoginViewController: UIViewController {
-
+   
+    let log_api : String = "http://13.229.125.8:8081/api/login"
     
-    var userDetailArray : [NSManagedObject] = []
-    
+    //Outlets
     @IBOutlet weak var usernametextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var login_icon: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//     self.usernametextField.delegate = self
-//      self.passwordTextField.delegate = self
+     self.usernametextField.delegate = self
+      self.passwordTextField.delegate = self
+       self.login_icon.layer.cornerRadius = self.login_icon.frame.size.width / 2
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    
     @IBAction func loginTapped(_ sender: Any) {
-        if let email = self.usernametextField.text, email.isValidEmail {
+    
+        if usernametextField.text != "" ,  (usernametextField.text?.isValidEmail)!{
+      
+           if passwordTextField.text != "",  (passwordTextField.text?.isValidPassword)! {
+         
+              self.requestApi()
+            usernametextField.text = ""
+            passwordTextField.text = ""
             
+//           let homeVc = self.storyboard?.instantiateViewController(withIdentifier: "HomeScreenViewController") as!HomeScreenViewController
+//                self.navigationController?.present(homeVc, animated: true, completion: nil)
+
+            
+           }else{
+            self.invalidPassword()
+            passwordTextField.text = ""
+            }
+        }else{
+            self.invalidUserName()
+            usernametextField.text = ""
+            passwordTextField.text = ""
         }
-    }
+            
+//            else{
+//            print("enter valid details")
+//            self.invalidLogin()
+//            usernametextField.text = ""
+//            passwordTextField.text = ""
+//            }
+        
+    }//End of loginTapped IB action
     
     @IBAction func forgotPassWordTapped(_ sender: Any) {
     
@@ -58,9 +90,64 @@ class LoginViewController: UIViewController {
         
     }
 }
-//MARK:- supporting functions
+//MARK:- Api Functions
 extension LoginViewController {
     
+    func requestApi()  {
+       
+        guard let email = self.usernametextField.text, let password = self.passwordTextField.text
+            else {
+            return
+        }
+        
+        let postvalue = ["email" : email, "password" : password]
+        
+        if let jsondata = try? JSONSerialization.data(withJSONObject: postvalue, options: []) {
+            
+    
+        
+        let configuration = URLSessionConfiguration.default
+        let session = URLSession(configuration: configuration)
+        
+        if let url = URL(string: self.log_api){
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = "POST"
+            
+            //urlRequest.addValue("application/JSON", forHTTPHeaderField: "Content-Type")
+            urlRequest.httpBody = jsondata
+            
+             let datatask = session.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
+                if error == nil{
+                    if let statuscode = (response as? HTTPURLResponse)?.statusCode{
+                        if statuscode == 200 {
+                            print("API call sucessfull")
+                           self.serialization(withdata: data)
+                        }
+                    }
+                }else {
+                    print("error in API Call")
+                }
+                
+            })
+            datatask.resume()
+        }
+        
+    }
+}
+    
+    
+    func serialization(withdata data : Data?){
+        guard let responsedata = data else{return}
+        do{
+            if let jsondata = try JSONSerialization.jsonObject(with: responsedata, options: .mutableContainers) as? NSDictionary{
+            print(jsondata)
+            }
+        }catch let error{
+            print("error on serialization:\(error.localizedDescription)")
+        }
+        
+        
+    }
    
     
 }
@@ -74,22 +161,31 @@ extension LoginViewController : UITextFieldDelegate{
     }
 }
 
-//Mark:- ManagedObjects to validate login details
+//MARK:- UIALERTACTIONS
+
 extension LoginViewController{
-    func toFetchTheEmail(){
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate{
-            let mob = appDelegate.persistentContainer.viewContext
-            
-            let fetchinreq = NSFetchRequest<NSManagedObject>(entityName: "User_details")
-            
-            do{
-                self.userDetailArray = try mob.fetch(fetchinreq)
-            }catch let error{
-                print("error while fetching \(error.localizedDescription)")
-            }
-        }
-        
+    func invalidLogin()  {
+        let alertController = UIAlertController(title: "Invalid Login", message: "Enter Valid Credentials.\n If you don't have account Click Create New User to register", preferredStyle: .alert)
+        let okaction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okaction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func  invalidUserName()  {
+        let alertController = UIAlertController(title: "Invalid UserName", message: "Enter Valid UserName...\n If you don't have account Click Create New User to register", preferredStyle: .alert)
+        let okaction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okaction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func  invalidPassword()  {
+        let alertController = UIAlertController(title: "Invalid UserName", message: "Please enter valid password...",
+                                                preferredStyle: .alert)
+        let okaction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okaction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
 }
+
 
